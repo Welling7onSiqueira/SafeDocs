@@ -1,0 +1,19 @@
+# Ignorar arquivos de log e cache
+*.log
+*.tmp
+.cache/
+__pycache__/
+__pycache__
+migrations/
+
+# Ignorar arquivos de imagens e mídia
+media/
+
+# Ignorar arquivos de ambiente
+.env
+.env.local
+
+# Ignorar arquivos do sistema
+.DS_Store
+Thumbs.db
+db.sqlite3
