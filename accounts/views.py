@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .application.create_user import CreateUser
+from .application.authentication_user import AuthenticateEmailUser
 from .infrastructure.user_repository import DjangoUserRepository
 
 def login_view(request):
@@ -8,7 +9,10 @@ def login_view(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
 
-        print(f'Username: {email}, Password: {password}')
+        authenticator = AuthenticateEmailUser(email, password, request)
+        authenticator.authenticate_user()
+
+        return redirect('singup')
 
     return render(request, 'login.html')
 

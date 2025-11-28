@@ -1,3 +1,4 @@
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User as UserModel
 from domain.auth.email import Email
 from domain.auth.interfaces import IUserRepository
@@ -38,4 +39,4 @@ class DjangoUserRepository(IUserRepository):
     
     def delete(self, user_id: int):
         user = UserModel.objects.get(id=user_id)
-        user.delete()
+        user.delete()        

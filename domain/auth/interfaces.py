@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List
 from .user_entity import UserEntity
-from . email import Email
+from .email import Email
 
 
 class IUserRepository(ABC):
