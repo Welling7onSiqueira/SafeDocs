@@ -16,13 +16,14 @@ def singup_view(request):
 
     if request.method == 'POST':
         password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
         email = request.POST.get('email')
 
         repository = DjangoUserRepository()
         create_user = CreateUser(repository)
 
-        created_user = create_user.execute(email, password)
+        created_user = create_user.execute(email, password, confirm_password)
 
-        print(f'Created User: {created_user.email.__str__()}')
+        print(f'Created User: {created_user.email}')
 
     return render(request, 'singup.html')

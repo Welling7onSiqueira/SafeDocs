@@ -5,7 +5,7 @@ class Password:
     def __init__(self, password):
 
         self.__validate(password)
-        self.email_address = password
+        self._password = password
 
     def __validate(self, password):
         
@@ -30,5 +30,14 @@ class Password:
         if not re.search(r"[!@#$%^&*(),.?\":{}|<>_\-+=/\\\[\]]", password):
             raise ValueError("A senha deve conter ao menos um caractere especial.")
         
+    def __eq__(self, value):
+        if not isinstance(value, Password):
+            return NotImplemented
+        return self._password == value.value
+
     def __str__(self):
-        return self.email_address
+        return self._password
+    
+    @property
+    def value(self):
+        return self._password

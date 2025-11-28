@@ -7,16 +7,16 @@ from domain.auth.user_entity import UserEntity
 class DjangoUserRepository(IUserRepository):
     
     def create(self, entity: UserEntity):
-        obj = UserModel.objects.create(
-            username=entity.email.__str__(),
-            email=entity.email.__str__(),
-            password=entity.password.__str__(),
+        obj = UserModel.objects.create_user(
+            username=entity.email.value,
+            email=entity.email.value,
+            password=entity.password.value,
         )
         return obj
 
     def get_by_email(self, email: Email):
         try:
-            return UserModel.objects.get(email=email.__str__())
+            return UserModel.objects.get(email=email.value)
         except UserModel.DoesNotExist:
             return None
         
@@ -31,8 +31,8 @@ class DjangoUserRepository(IUserRepository):
     
     def update(self, entity: UserEntity):
         user = UserModel.objects.get(id=entity.id)
-        user.email = entity.email.__str__()
-        user.password = entity.password.__str__()
+        user.email = entity.email.value
+        user.password = entity.password.value
         user.save()
         return user
     
